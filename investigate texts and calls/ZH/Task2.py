@@ -23,3 +23,16 @@ September 2016.".
 如果键不存在于字典内，将此键加入字典，并将它的值设为给定值。
 """
 
+duration_statistic = {}
+for rec in calls:
+	call_from, call_to, _ign, duration = rec
+
+	call_from in duration_statistic.keys() or duration_statistic.update({call_from: 0})
+	call_to in duration_statistic.keys() or duration_statistic.update({call_to: 0})
+
+	duration_statistic[call_from] += duration
+	duration_statistic[call_to] += duration
+
+stat = duration_statistic.itemes()
+longest = sorted(stat, key=lambda item: item[1])[-1]
+print(f'{longest[0]} spent the longest time, {longest[1]} seconds, on the phone during September 2016.')
