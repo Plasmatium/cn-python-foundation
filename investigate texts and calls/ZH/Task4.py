@@ -29,8 +29,10 @@ with open('calls.csv', 'r') as f:
 all_from_140 = [rec[0] for rec in calls if rec[0].startswith('140')]
 all_recieve_calls = [rec[1] for rec in calls]
 all_recieve_texts = [rec[1] for rec in texts]
+all_send_texts = [rec[0] for rec in texts]
 
-suspecious = sorted(set([num for num in all_from_140 if num not in all_recieve_texts and num not in all_recieve_calls]))
+suspecious = sorted(
+    set([num for num in all_from_140 if num not in all_recieve_texts and num not in all_recieve_calls and num not in all_send_texts]))
 
 print('These numbers could be telemarketers: ')
 [print('\t', s) for s in suspecious]
