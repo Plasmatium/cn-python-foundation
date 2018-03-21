@@ -47,7 +47,7 @@ def fetch_code (phone_num):
 	if ' ' in phone_num:
 		return phone_num.split(' ')[0]
 
-dial_from_080 = [rec for rec in calls if rec[0].startswith('080')]
+dial_from_080 = [rec for rec in calls if rec[0].startswith('080') and ' ' not in rec[0]]
 code_list = {}
 for rec in calls:
 	code = fetch_code(rec[0])

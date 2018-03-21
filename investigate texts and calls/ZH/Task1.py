@@ -19,14 +19,14 @@ with open('calls.csv', 'r') as f:
 "There are <count> different telephone numbers in the records."
 """
 
-all_text_number = set()
+all_number = set()
 for rec in texts:
-	all_text_number.add(rec[0])
-	all_text_number.add(rec[1])
+	all_number.add(rec[0])
+	all_number.add(rec[1])
 
 all_call_number = set()
 for rec in calls:
-	all_call_number.add(rec[0])
-	all_call_number.add(rec[1])
+	all_number.add(rec[0])
+	all_number.add(rec[1])
 
-print(f'There are {len(all_text_number) + len(all_call_number)} different telephone numbers in the records')
+print(f'There are {len(all_number)} different telephone numbers in the records')

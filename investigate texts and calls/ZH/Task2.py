@@ -30,9 +30,9 @@ for rec in calls:
 	call_from in duration_statistic.keys() or duration_statistic.update({call_from: 0})
 	call_to in duration_statistic.keys() or duration_statistic.update({call_to: 0})
 
-	duration_statistic[call_from] += duration
-	duration_statistic[call_to] += duration
+	duration_statistic[call_from] += int(duration)
+	duration_statistic[call_to] += int(duration)
 
-stat = duration_statistic.itemes()
+stat = duration_statistic.items()
 longest = sorted(stat, key=lambda item: item[1])[-1]
 print(f'{longest[0]} spent the longest time, {longest[1]} seconds, on the phone during September 2016.')
