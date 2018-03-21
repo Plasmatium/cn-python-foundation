@@ -47,7 +47,8 @@ def fetch_code (phone_num):
 	if ' ' in phone_num:
 		return phone_num.split(' ')[0]
 
-dial_from_080 = [rec for rec in calls if rec[0].startswith('080') and ' ' not in rec[0]]
+dial_from_080 = [rec for rec in calls if rec[0].startswith('(080)')]
+# print(dial_from_080);raise(Error('tm'))
 code_list = {}
 for rec in calls:
 	code = fetch_code(rec[0])
@@ -61,7 +62,7 @@ print('The numbers called by people in Bangalore have codes:')
 [print('\t', code) for code in sorted(code_list.keys())]
 
 # Part II
-total = sum(code_list.values())
-to_080 = code_list['080']
-p = to_080 / total * 100.0
+total = len(dial_from_080)
+that_080_to_080 = [rec for rec in dial_from_080 if rec[1].startswith('(080)')]
+p = len(that_080_to_080) / total * 100.0
 print('\n%.2f percent of calls from fixed lines in Bangalore are callsto other fixed lines in Bangalore.' % p)

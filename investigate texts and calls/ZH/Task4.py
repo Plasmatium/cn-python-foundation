@@ -26,13 +26,20 @@ with open('calls.csv', 'r') as f:
 电话号码不能重复，每行打印一条，按字典顺序排序后输出。
 """
 
-all_from_140 = [rec[0] for rec in calls if rec[0].startswith('140')]
-all_recieve_calls = [rec[1] for rec in calls]
-all_recieve_texts = [rec[1] for rec in texts]
-all_send_texts = [rec[0] for rec in texts]
+interactions = set()
+[interactions.update({rec[0], rec[1]}) for rec in texts]
+[interactions.add(rec[1]) for rec in calls]
 
-suspecious = sorted(
-    set([num for num in all_from_140 if num not in all_recieve_texts and num not in all_recieve_calls and num not in all_send_texts]))
+# all_recieve_calls = set([rec[1] for rec in calls])
+# all_recieve_texts = set([rec[1] for rec in texts])
+# all_send_texts = set([rec[0] for rec in texts])
+# all_interactions = all_recieve_calls.union(all_recieve_texts, all_send_texts)
+
+def filter_ (num):
+	return num not in all_interactions
+
+suspecious = set()
+[suspecious.add(rec[0]) for rec in calls if rec[0] not in interactions]
 
 print('These numbers could be telemarketers: ')
-[print('\t', s) for s in suspecious]
+[print('\t', s) for s in sorted(suspecious)]
